@@ -3,6 +3,10 @@ package pacman;
 import java.util.Arrays;
 import java.util.Random;
 
+import pacman.wormholes.ArrivalPortal;
+import pacman.wormholes.DeparturePortal;
+import pacman.wormholes.Wormhole;
+
 public class Maze {
 	
 	private Random random;
@@ -10,6 +14,17 @@ public class Maze {
 	private PacMan pacMan;
 	private Ghost[] ghosts;
 	private FoodItem[] foodItems;
+	private DeparturePortal[] departurePortals;
+	private ArrivalPortal[] arrivalPortals;
+	private Wormhole[] wormholes;
+	
+	public DeparturePortal[] getDeparturePortals() {return departurePortals;}
+	
+	public ArrivalPortal[] getArrivalPortals() {return arrivalPortals;}
+	
+	public Wormhole[] getWormholes() {return wormholes;}
+	
+	public void addWormhole(Wormhole wormhole) {throw new IllegalStateException("Not yet implemented");}
 	
 	public MazeMap getMap() { return map; }
 	
