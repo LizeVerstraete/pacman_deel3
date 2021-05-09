@@ -1,7 +1,12 @@
 package pacman;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import pacman.wormholes.ArrivalPortal;
 import pacman.wormholes.DeparturePortal;
@@ -18,13 +23,25 @@ public class Maze {
 	private ArrivalPortal[] arrivalPortals;
 	private Wormhole[] wormholes;
 	
-	public DeparturePortal[] getDeparturePortals() {return departurePortals;}
+	public DeparturePortal[] getDeparturePortals() {return departurePortals.clone();}
 	
-	public ArrivalPortal[] getArrivalPortals() {return arrivalPortals;}
+	public ArrivalPortal[] getArrivalPortals() {return arrivalPortals.clone();}
 	
-	public Wormhole[] getWormholes() {return wormholes;}
+	public Wormhole[] getWormholes() {return wormholes.clone();}
 	
-	public void addWormhole(Wormhole wormhole) {throw new IllegalStateException("Not yet implemented");}
+	public void addWormhole(Wormhole wormhole) {
+		if (!Set.of(arrivalPortals).contains(wormhole.getArrivalPortal()))
+			throw new IllegalArgumentException("Wormhole's arrival portal is not in the maze");
+		if (!Set.of(departurePortals).contains(wormhole.getDeparturePortal()))
+			throw new IllegalArgumentException("Wormhole's departure portal is not in the maze");
+		int i;
+		Wormhole newWormholes[] = new Wormhole[wormholes.length + 1];
+		for (i=0; i < wormholes.length; i++)
+			newWormholes[i] = wormholes[i];
+		newWormholes[wormholes.length] = wormhole;
+		wormholes = newWormholes;
+
+		;}
 	
 	public MazeMap getMap() { return map; }
 	
@@ -81,11 +98,20 @@ public class Maze {
 	}
 	
 	public void movePacMan(Direction direction) {
-		Square newSquare = pacMan.getSquare().getNeighbor(direction);
+		if (Set.of(departurePortals).contains(pacMan.getSquare()))
+			{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
+			 List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
+			 Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+			}
+		else {
+			Square newSquare = pacMan.getSquare().getNeighbor(direction);
+		
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
 			checkFoodItemCollision(newSquare);
 			checkPacManDamage();
+			
+			}
 		}
 	}
 	

@@ -1,7 +1,11 @@
 package pacman;
 
 import java.util.Arrays;
+
 import java.util.Random;
+
+import pacman.wormholes.ArrivalPortal;
+import pacman.wormholes.DeparturePortal;
 
 public class MazeDescriptions {
 	
@@ -22,6 +26,13 @@ public class MazeDescriptions {
 		
 		int nbGhosts = 0;
 		Ghost[] ghosts = new Ghost[width * height];
+		
+		int nbDeparturePortals = 0;
+		DeparturePortal[] departureportals = new DeparturePortal[width*height];
+		
+		int nbArrivalPortals = 0;
+		ArrivalPortal[] arrivalportals = new ArrivalPortal[width*height];
+		
 		
 		for (int row = 0; row < lines.length; row++) {
 			String line = lines[row];
@@ -49,6 +60,8 @@ public class MazeDescriptions {
 						throw new IllegalArgumentException("Maze description contains multiple P characters");
 					pacMan = new PacMan(3, Square.of(map, row, column));
 				}
+				case 'D' -> departureportals[nbDeparturePortals++] = new DeparturePortal (Square.of(map, row, column));
+				case 'A' -> arrivalportals[nbArrivalPortals++] = new ArrivalPortal(Square.of(map, row, column));
 				default -> throw new IllegalArgumentException("Invalid character in maze description: " + c);
 				}
 			}
