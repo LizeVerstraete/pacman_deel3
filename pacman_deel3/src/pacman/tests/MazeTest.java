@@ -9,12 +9,17 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import pacman.Direction;
 import pacman.FoodItem;
 import pacman.Maze;
 import pacman.MazeDescriptions;
+import pacman.MazeMap;
+import pacman.PacMan;
 import pacman.PowerPellet;
 import pacman.Square;
+import pacman.wormholes.ArrivalPortal;
 import pacman.wormholes.DeparturePortal;
+import pacman.wormholes.Wormhole;
 
 class MazeTest {
 	
@@ -71,8 +76,20 @@ class MazeTest {
 	void testGetSize() {
 		assert powerPellets[0].getSize() == 2;
 	}
+	
+	
 	DeparturePortal[] departurePortals = maze.getDeparturePortals();
-	void testDeparturePortals() {
-		assert departurePortals.length == 1;
+	ArrivalPortal[] arrivalPortals = maze.getArrivalPortals();
+	Wormhole wormhole = new Wormhole(departurePortals[0],arrivalPortals[0]);
+	PacMan pacman = maze.getPacMan();
+	MazeMap mazeMap = maze.getMap();
+	
+	void testWormholes() {
+		pacman.setSquare(Square.of(mazeMap,departurePortals[0].getSquare().getRowIndex(),departurePortals[0].getSquare().getColumnIndex()));
+		maze.movePacMan(Direction.UP);
+		maze.addWormhole(wormhole);
+		assert pacman.getSquare() == arrivalPortals[0].getSquare();
+		maze.movePacMan(Direction.RIGHT);
+		assert pacman.getSquare() == Square(mazeMap,arrivalPortals[0].getSquare().getRowIndex(), arrivalPortals[0].getSquare().getColumnIndex()+1;)
 	}
 }

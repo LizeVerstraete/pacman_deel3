@@ -21,7 +21,7 @@ public class Maze {
 	private FoodItem[] foodItems;
 	private DeparturePortal[] departurePortals;
 	private ArrivalPortal[] arrivalPortals;
-	private Wormhole[] wormholes;
+	private Wormhole[] wormholes = new Wormhole[0];
 	
 	public DeparturePortal[] getDeparturePortals() {return departurePortals.clone();}
 	
@@ -100,11 +100,21 @@ public class Maze {
 	}
 	
 	public void movePacMan(Direction direction) {
-		if (Set.of(departurePortals).contains(pacMan.getSquare()))
-			{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
-			 List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
-			 Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+		//if (Set.of(departurePortals).contains(pacMan.getSquare()))
+			//{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
+			//List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
+			//Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+			//}
+		if (Set.of(departurePortals).contains(pacMan.getSquare())) {
+			List<Wormhole> list = new ArrayList<Wormhole>();
+			for(Wormhole wormhole : wormholes) {
+				if (wormhole.getDeparturePortal().getSquare() == pacMan.getSquare()) {
+					list.add(wormhole);
+				}
 			}
+			Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+		}
+
 		else {
 			Square newSquare = pacMan.getSquare().getNeighbor(direction);
 		
