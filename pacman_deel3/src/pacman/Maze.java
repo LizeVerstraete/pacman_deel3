@@ -101,30 +101,36 @@ public class Maze {
 	
 	public void movePacMan(Direction direction) {
 		//if (Set.of(departurePortals).contains(pacMan.getSquare()))
-			//{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
-			//List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
-			//Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
-			//}
+		//	{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
+		//	List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
+		//	Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+		//	}
+		Square newSquare = pacMan.getSquare();
 		if (Set.of(departurePortals).contains(pacMan.getSquare())) {
 			List<Wormhole> list = new ArrayList<Wormhole>();
 			for(Wormhole wormhole : wormholes) {
 				if (wormhole.getDeparturePortal().getSquare() == pacMan.getSquare()) {
 					list.add(wormhole);
+			newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
 				}
 			}
-			Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
 		}
 
+		//if (Arrays.stream(departurePortals).anyMatch(departurePortal -> departurePortal.getSquare() == pacMan.getSquare())){
+		//	Stream<Wormhole> list = Arrays.stream(wormholes).filter(wormhole -> wormhole.getDeparturePortal().getSquare() == pacMan.getSquare());
+		//	newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+		//		}
+		//	}
+		//}
 		else {
-			Square newSquare = pacMan.getSquare().getNeighbor(direction);
+			newSquare = pacMan.getSquare().getNeighbor(direction);
+		}
 		
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
 			checkFoodItemCollision(newSquare);
 			checkPacManDamage();
-			
 			}
-		}
 	}
 	
 }
