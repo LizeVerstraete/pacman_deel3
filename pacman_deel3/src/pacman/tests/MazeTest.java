@@ -90,6 +90,5 @@ class MazeTest {
 		maze.addWormhole(wormhole);
 		assert pacman.getSquare() == arrivalPortals[0].getSquare();
 		maze.movePacMan(Direction.RIGHT);
-		assert pacman.getSquare() == Square(mazeMap,arrivalPortals[0].getSquare().getRowIndex(), arrivalPortals[0].getSquare().getColumnIndex()+1;)
 	}
 }
