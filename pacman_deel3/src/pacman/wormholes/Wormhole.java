@@ -2,10 +2,12 @@ package pacman.wormholes;
 
 import java.util.Set;
 
+import pacman.Square;
+
 public class Wormhole {
 	
-	private ArrivalPortal arrivalPortal;
 	private DeparturePortal departurePortal;
+	private ArrivalPortal arrivalPortal;
 		
 
 	public DeparturePortal getDeparturePortal() {return departurePortal;}
@@ -15,11 +17,17 @@ public class Wormhole {
 	public Wormhole(DeparturePortal departurePortal, ArrivalPortal arrivalPortal) {
 		this.departurePortal = departurePortal;
 		this.arrivalPortal = arrivalPortal;
+		departurePortal.wormholes.add(this);
+		arrivalPortal.wormholes.add(this);
 	}
 	
 	
-	public void setDeparturePortal(DeparturePortal departurePortal) {this.departurePortal = departurePortal;}
+	public void setDeparturePortal(DeparturePortal departurePortal) {
+		this.departurePortal = departurePortal;
+	}
 	
-	public void setArrivalPortal(ArrivalPortal arrivalPortal) {this.arrivalPortal = arrivalPortal;}
+	public void setArrivalPortal(ArrivalPortal arrivalPortal) {
+		this.arrivalPortal = arrivalPortal;
+	}
 	
 }

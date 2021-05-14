@@ -8,13 +8,15 @@ import pacman.Square;
 public class ArrivalPortal {
 	public Square square;
 	
-	private HashSet<Wormhole> wormholes = new HashSet <>();
+	public HashSet<Wormhole> wormholes = new HashSet <>();
 
 	public Square getSquare() {return square;}
+	
+	//Set<Wormhole> getWormholesInternal() {return Set.copyOf(wormholes);}
 	
 	public Set<Wormhole> getWormholes() {return Set.copyOf(wormholes);}
 	
 	public ArrivalPortal(Square square) {
-		this.square = square;
+		this.square = square;	
 	}
 }

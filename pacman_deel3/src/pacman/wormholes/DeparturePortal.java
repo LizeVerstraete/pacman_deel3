@@ -9,7 +9,7 @@ import java.util.Set;
 public class DeparturePortal {
 	private Square square;
 	
-	private HashSet<Wormhole> wormholes = new HashSet <>();
+	public HashSet<Wormhole> wormholes = new HashSet <>();
 	
 	public Square getSquare() {return square;}
 	

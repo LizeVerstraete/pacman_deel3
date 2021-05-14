@@ -9,10 +9,12 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import pacman.FoodItem;
 import pacman.Maze;
 import pacman.MazeDescriptions;
 import pacman.PowerPellet;
 import pacman.Square;
+import pacman.wormholes.DeparturePortal;
 
 class MazeTest {
 	
@@ -42,9 +44,13 @@ class MazeTest {
 			###.#.#.#####.#.#.###
 			#.....#...#...#.....#
 			#.#######.#.#######.#
-			#...................#
+			#A.................D#
 			#####################
 			""");
+	FoodItem[] foodItems = maze.getFoodItems();
+	void testFoodItems() {
+		assert foodItems.length == 1;
+	}
 	PowerPellet[] powerPellets =
 		Arrays.stream(maze.getFoodItems())
 			.flatMap(i -> i instanceof PowerPellet ? Stream.of((PowerPellet)i) : Stream.of())
@@ -65,5 +71,8 @@ class MazeTest {
 	void testGetSize() {
 		assert powerPellets[0].getSize() == 2;
 	}
-	
+	DeparturePortal[] departurePortals = maze.getDeparturePortals();
+	void testDeparturePortals() {
+		assert departurePortals.length == 1;
+	}
 }
