@@ -66,12 +66,13 @@ public class WormholeTest {
 		//assertEquals(Set.of(arrivalPortal1,arrivalPortal2), maze.getArrivalPortals());
 		Wormhole wormhole1 = new Wormhole(departurePortal1,arrivalPortal1);
 		Wormhole wormhole2 = new Wormhole(departurePortal2,arrivalPortal1);
-		maze.addWormhole(wormhole1);
-		maze.addWormhole(wormhole2);
 		
-		assertEquals(Square.of(mazeMap,1,1),departurePortal1.getSquare());
-		assertEquals(Square.of(mazeMap, 5, 3),departurePortal2.getSquare());
-		assertEquals(Square.of(mazeMap,2,1),arrivalPortal1.getSquare());
+		assertEquals(Square.of(mazeMap,1,1).getColumnIndex(),departurePortal1.getSquare().getColumnIndex());
+		assertEquals(Square.of(mazeMap,1,1).getRowIndex(),departurePortal1.getSquare().getRowIndex());
+		assertEquals(Square.of(mazeMap, 5, 3).getColumnIndex(),departurePortal2.getSquare().getColumnIndex());
+		assertEquals(Square.of(mazeMap, 5, 3).getRowIndex(),departurePortal2.getSquare().getRowIndex());
+		assertEquals(Square.of(mazeMap,2,1).getColumnIndex(),arrivalPortal1.getSquare().getColumnIndex());
+		assertEquals(Square.of(mazeMap,2,1).getRowIndex(),arrivalPortal1.getSquare().getRowIndex());
 		
 		assertEquals(arrivalPortal1,wormhole1.getArrivalPortal());
 		assertEquals(departurePortal2,wormhole2.getDeparturePortal());
