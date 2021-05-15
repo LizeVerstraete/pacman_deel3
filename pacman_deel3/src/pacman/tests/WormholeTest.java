@@ -57,15 +57,17 @@ public class WormholeTest {
 	//maze.addWormhole(new Wormhole(departurePortals[1], arrivalPortals[1]));
 	MazeMap mazeMap = maze.getMap();
 	@Test
-	public void test() {
+	public void test() { 
 		DeparturePortal departurePortal1 = new DeparturePortal(Square.of(mazeMap,1,1));
 		DeparturePortal	departurePortal2 = new DeparturePortal(Square.of(mazeMap, 5, 3));
+		DeparturePortal departurePortal3 = new DeparturePortal(Square.of(mazeMap, 1, 3));
 		ArrivalPortal arrivalPortal1 = new ArrivalPortal(Square.of(mazeMap,2,1));
 		ArrivalPortal arrivalPortal2 = new ArrivalPortal(Square.of(mazeMap, 1, 4));
 		//assertEquals(Set.of(departurePortal1,departurePortal2),maze.getDeparturePortals());
 		//assertEquals(Set.of(arrivalPortal1,arrivalPortal2), maze.getArrivalPortals());
 		Wormhole wormhole1 = new Wormhole(departurePortal1,arrivalPortal1);
 		Wormhole wormhole2 = new Wormhole(departurePortal2,arrivalPortal1);
+		Wormhole wormhole3 = new Wormhole(departurePortal3,arrivalPortal1);
 		
 		assertEquals(Square.of(mazeMap,1,1).getColumnIndex(),departurePortal1.getSquare().getColumnIndex());
 		assertEquals(Square.of(mazeMap,1,1).getRowIndex(),departurePortal1.getSquare().getRowIndex());
@@ -78,7 +80,7 @@ public class WormholeTest {
 		assertEquals(departurePortal2,wormhole2.getDeparturePortal());
 		assertEquals(departurePortal1,wormhole1.getDeparturePortal());
 
-		assertEquals(Set.of(wormhole1,wormhole2),arrivalPortal1.getWormholes());
+		assertEquals(Set.of(wormhole1,wormhole2,wormhole3),arrivalPortal1.getWormholes());
 		assertEquals(Set.of(wormhole1),departurePortal1.getWormholes());
 		assertEquals(Set.of(wormhole2),departurePortal2.getWormholes());
 		
