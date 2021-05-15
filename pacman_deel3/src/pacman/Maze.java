@@ -101,36 +101,44 @@ public class Maze {
 	
 	public void movePacMan(Direction direction) {
 		//if (Set.of(departurePortals).contains(pacMan.getSquare()))
+			//{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
+			//List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
+			//Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
+			//}
 		//	{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
 		//	List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
 		//	Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
 		//	}
-		Square newSquare = pacMan.getSquare();
-		if (Set.of(departurePortals).contains(pacMan.getSquare())) {
+		Square newSquare = pacMan.getSquare();	
+		
+		List<Square> departureSquares = new ArrayList<Square>();
+		for (DeparturePortal departurePortal:departurePortals) {
+			if ((departurePortal.getSquare()).equals(pacMan.getSquare().getNeighbor(direction)) && departurePortal.getWormholes().size()!=0) {
+			departureSquares.add(departurePortal.getSquare());
+			}
+		}
+		if (departureSquares.size() != 0){
+
 			List<Wormhole> list = new ArrayList<Wormhole>();
 			for(Wormhole wormhole : wormholes) {
-				if (wormhole.getDeparturePortal().getSquare() == pacMan.getSquare()) {
+				if ((wormhole.getDeparturePortal().getSquare()).equals(pacMan.getSquare().getNeighbor(direction))) {
 					list.add(wormhole);
 			newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
 				}
 			}
 		}
 
-		//if (Arrays.stream(departurePortals).anyMatch(departurePortal -> departurePortal.getSquare() == pacMan.getSquare())){
-		//	Stream<Wormhole> list = Arrays.stream(wormholes).filter(wormhole -> wormhole.getDeparturePortal().getSquare() == pacMan.getSquare());
-		//	newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
-		//		}
-		//	}
-		//}
 		else {
 			newSquare = pacMan.getSquare().getNeighbor(direction);
 		}
-		
+
 		if (newSquare.isPassable()) {
 			pacMan.setSquare(newSquare);
 			checkFoodItemCollision(newSquare);
 			checkPacManDamage();
+
 			}
 	}
-	
+
 }
+
