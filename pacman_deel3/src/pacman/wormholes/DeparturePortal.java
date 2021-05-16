@@ -17,6 +17,8 @@ public class DeparturePortal {
 	 * @invar | wormholes.stream().allMatch(wormhole -> wormhole != null)
 	 * @representationObject
 	 */
+	// volgens mij moet dit private zijn, maar dan zou er nog een extra
+	// functie addWormhole() ofzo moeten gemaakt worden
 	public HashSet<Wormhole> wormholes = new HashSet <>();
 	
 	/**
@@ -35,6 +37,7 @@ public class DeparturePortal {
 	public Set<Wormhole> getWormholes() {return Set.copyOf(wormholes);}
 	
 	/**
+	 * @mutates | this
 	 * @throws IllegalArgumentException | square == null
 	 * @post | this.getSquare() == square
 	 */

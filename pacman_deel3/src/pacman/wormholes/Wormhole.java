@@ -5,19 +5,20 @@ import java.util.Set;
 import pacman.Square;
 
 /**
- * @invar | getDeparturePortal() != null
- * @invar | getArrivalPortal() != null
+ * @invar | getDeparturePortal() != null && getDeparturePortal().getWormholes().contains(this)
+ * @invar | getArrivalPortal() != null && getArrivalPortal().getWormholes().contains(this)
  */
 public class Wormhole {
 	
 	/**
 	 * @invar | departurePortal != null
-	 * @peerObject
+	 * @invar | departurePortal.getWormholes().contains(this)
 	 */
 	private DeparturePortal departurePortal;
+	
 	/**
 	 * @invar | arrivalPortal != null
-	 * @peerObject
+	 * @invar | arrivalPortal.getWormholes().contains(this)
 	 */
 	private ArrivalPortal arrivalPortal;
 		
@@ -59,9 +60,10 @@ public class Wormhole {
 	// deze had ik er eerst ook bij gezet, maar dan werkt de testsuite niet meer maar ik denk wel dat we er best nog zoiets bijzetten
 	// * @post | this.getDeparturePortal().getWormholes().stream().
 	// * 		 |         anyMatch(wormhole -> wormhole.getDeparturePortal() == this.getDeparturePortal())
-	
 	/**
 	 * @throws IllegalArgumentException | departurePortal == null
+	 * @mutates_properties | this.getDeparturePortal(), departurePortal.getWormholes()
+	 * @post | this.getDeparturePortal().getWormholes().stream().anyMatch(wormhole -> wormhole.getDeparturePortal() == this.getDeparturePortal())
 	 * @post | this.getDeparturePortal() == departurePortal
 	 * @post | this.getArrivalPortal() == old(this.getArrivalPortal())
 	 */
@@ -77,6 +79,7 @@ public class Wormhole {
 	// * 		 |         anyMatch(wormhole -> wormhole.getArrivalPortal() == this.getArrivalPortal())
 	/**
 	 * @throws IllegalArgumentException | arrivalPortal == null
+	 * @mutates_properties | this.getArrivalPortal(), arrivalPortal.getWormholes()
 	 * @post | this.getArrivalPortal() == arrivalPortal
 	 * @post | this.getDeparturePortal() == old(this.getDeparturePortal())
 	 */
