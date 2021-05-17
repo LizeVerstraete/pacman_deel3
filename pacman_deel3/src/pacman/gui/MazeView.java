@@ -34,7 +34,7 @@ import pacman.wormholes.Wormhole;
 public class MazeView extends JPanel {
 	
 	private static final int squareSize = 30;
-	private static final int lifeSize = squareSize;
+	private static final int lifeSize = squareSize; 
 	private static final int lifeMargin = 1;
 	private static final int dotRadius = squareSize / 10;
 	private static final int ghostMoveDelayMillis = 1000;
