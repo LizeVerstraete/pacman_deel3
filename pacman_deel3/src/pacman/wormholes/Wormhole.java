@@ -12,13 +12,13 @@ public class Wormhole {
 	
 	/**
 	 * @invar | departurePortal != null
-	 * @invar | departurePortal.getWormholes().contains(this)
+	 * @invar | departurePortal.getWormholesInternal().contains(this)
 	 */
 	private DeparturePortal departurePortal;
 	
 	/**
 	 * @invar | arrivalPortal != null
-	 * @invar | arrivalPortal.getWormholes().contains(this)
+	 * @invar | arrivalPortal.getWormholesInternal().contains(this)
 	 */
 	private ArrivalPortal arrivalPortal;
 		
@@ -71,7 +71,9 @@ public class Wormhole {
 		if (departurePortal == null) {
 			throw new IllegalArgumentException("The departurePortal is null");
 		}
+		this.departurePortal.wormholes.remove(this);
 		this.departurePortal = departurePortal;
+		departurePortal.wormholes.add(this);
 	}
 	
 	// Deze had ik er eerst ook nog bij gezet, maar dan werkt de testsuite niet meer maar ik denk wel dat we er best nog ziets bijzetten
@@ -87,6 +89,8 @@ public class Wormhole {
 		if (arrivalPortal == null) {
 			throw new IllegalArgumentException("The arrivalPortal is null");
 		}
+		this.arrivalPortal.wormholes.remove(this);
 		this.arrivalPortal = arrivalPortal;
+		arrivalPortal.wormholes.add(this);
 	}
 }

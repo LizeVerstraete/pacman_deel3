@@ -26,7 +26,7 @@ public class DeparturePortal {
 	 */
 	public Square getSquare() {return square;}
 	
-	//Set<Wormhole> getWormholesInternal() {return Set.copyOf(wormholes);}
+	Set<Wormhole> getWormholesInternal() {return Set.copyOf(wormholes);}
 	
 	/**
 	 * @post | result != null && result.stream().allMatch(wormhole -> wormhole != null)
