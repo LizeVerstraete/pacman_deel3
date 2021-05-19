@@ -100,15 +100,6 @@ public class Maze {
 	}
 	
 	public void movePacMan(Direction direction) {
-		//if (Set.of(departurePortals).contains(pacMan.getSquare()))
-			//{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
-			//List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
-			//Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
-			//}
-		//	{DeparturePortal departureportal = new DeparturePortal(pacMan.getSquare());
-		//	List<Wormhole> list = new ArrayList<Wormhole>(departureportal.getWormholes());
-		//	Square newSquare = list.get(random.nextInt(list.size())).getArrivalPortal().getSquare();
-		//	}
 		Square newSquare = pacMan.getSquare();	
 		
 		List<Square> departureSquares = new ArrayList<Square>();

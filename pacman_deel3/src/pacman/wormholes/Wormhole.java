@@ -57,9 +57,6 @@ public class Wormhole {
 		arrivalPortal.wormholes.add(this);
 	}
 	
-	// deze had ik er eerst ook bij gezet, maar dan werkt de testsuite niet meer maar ik denk wel dat we er best nog zoiets bijzetten
-	// * @post | this.getDeparturePortal().getWormholes().stream().
-	// * 		 |         anyMatch(wormhole -> wormhole.getDeparturePortal() == this.getDeparturePortal())
 	/**
 	 * @throws IllegalArgumentException | departurePortal == null
 	 * @mutates_properties | this.getDeparturePortal(), departurePortal.getWormholes()
@@ -76,9 +73,6 @@ public class Wormhole {
 		departurePortal.wormholes.add(this);
 	}
 	
-	// Deze had ik er eerst ook nog bij gezet, maar dan werkt de testsuite niet meer maar ik denk wel dat we er best nog ziets bijzetten
-	// * @post | this.getArrivalPortal().getWormholes().stream().
-	// * 		 |         anyMatch(wormhole -> wormhole.getArrivalPortal() == this.getArrivalPortal())
 	/**
 	 * @throws IllegalArgumentException | arrivalPortal == null
 	 * @mutates_properties | this.getArrivalPortal(), arrivalPortal.getWormholes()
